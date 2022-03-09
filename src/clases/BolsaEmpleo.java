@@ -34,16 +34,21 @@ public class BolsaEmpleo {
 
 		boolean estaEnBolsa = false;
 		if (persona.obtenerEdad() >= 18) {
-			for (BolsaEmpleo bolsa : listaDeBolsas) {
-				if (bolsa.listaVacantes.contains(persona)) {
-					estaEnBolsa = true;
-				}
-			}
+			estaEnBolsa = comprobarEstaEnBolsa(persona, listaDeBolsas, estaEnBolsa);
 			if (!estaEnBolsa) {
 				this.listaVacantes.add(persona);
 			}
 		}
 	}
+
+private boolean comprobarEstaEnBolsa(Persona persona, List<BolsaEmpleo> listaDeBolsas, boolean estaEnBolsa) {
+	for (BolsaEmpleo bolsa : listaDeBolsas) {
+		if (bolsa.listaVacantes.contains(persona)) {
+			estaEnBolsa = true;
+		}
+	}
+	return estaEnBolsa;
+}
 
 	@Override
 	public String toString() {
